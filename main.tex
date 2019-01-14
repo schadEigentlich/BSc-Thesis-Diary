@@ -1,0 +1,229 @@
+\documentclass{article}
+\setcounter{secnumdepth}{0}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+
+\title{BSc Thesis Diary}
+\author{Daniel Gstoehl}
+\date{October 2018}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Sep. 26 - Oct. 2}
+\subsection{Reading/Research}
+\begin{itemize}
+    \item Read Resonance SDK intro and sample code
+    \item Conducted some initial user testing with the test app.
+\end{itemize}
+\subsection{Development}
+\begin{itemize}
+    \item Created a first demo app that lets the user place a sound at an arbitrary location.
+    \item Added automatically moving sounds to the app.
+    \item Added a test game to the app that makes sound objects approach from 8 directions and has the user guess where it is coming from.
+    \item Added a scoreboard and data export.
+\end{itemize}
+\subsection{Insights}
+\begin{itemize}
+    \item Recognizing sounds coming from straight ahead/behind is hard.
+    \item Certain sounds are easier to locate than others.
+\end{itemize}
+\subsection{Issues}
+\begin{itemize}
+    \item Some sound files refused to play. \newline Solution: Convert all sounds to mono-channel MP3. 
+    \item First user tests showed low accuracy when estimating direction.
+\end{itemize}
+\subsection{Directions/Open Questions}
+\begin{itemize}
+    \item Do more user testing.
+    \item Try different sound clips.
+    \item Try different motion patterns.
+    \item Try reducing directions to four (maybe diagonals).
+    \item Read up on spatial audio
+\end{itemize}
+\section{Oct. 2 - Oct. 10}
+\subsection{Reading/Research}
+\begin{itemize}
+    \item Learned about the new Android support library system (AndroidX)
+    \item Read up on Android Fragment UIs
+\end{itemize}
+\subsection{Development}
+\begin{itemize}
+    \item Move the sample app to API version 28
+    \item Refactor the Fragment classes to AppCompat and then to AndroidX
+    \item Change the layout and code structure of the sample app
+    \item Ensure Fragments kill their associated coroutines and stop their sounds when they are not visible
+\end{itemize}
+\subsection{Insights}
+\begin{itemize}
+    \item Fragments and their lifecycle make dealing with different game stages easier
+    \item Four directions are much easier to distinguish than eight
+    \item Pure sine waves are awful (just like the SDK guide said)
+\end{itemize}
+\subsection{Issues}
+\begin{itemize}
+    \item Screwed up the Gradle builds. Solution: No idea, but it works again
+\end{itemize}
+\subsection{TODO}
+\begin{itemize}
+    \item Test different sounds
+    \item Test different combinations of directions
+    \item Test different approach patterns
+\end{itemize}
+\subsection{Oct. 11 - Oct. 23}
+\subsubsection{Development}
+\begin{itemize}
+    \item Implement approach patterns with horizontal and vertical motion
+    \item Add a 3-direction test (front, left, right)
+    \item Conduct some testing by myself
+    \item Small utility to merge test results
+    \item Gather some sound effects for a more game-like test
+    \item Fix an issue with slow sound loading on some devices
+    \item Add an option to the test that makes sounds spawn in front of the player and move into position before approaching
+    \item Started work on a new test that launches sounds in sync with music according to a predefined track
+\end{itemize}
+\subsubsection{Research}
+\begin{itemize}
+    \item Look more closely at rhythm games (specifically Rhythm Heaven)
+    \item Match up sound effects with music in Audacity to simulate a game
+    \item Testing with the new movement pattern
+\end{itemize}
+\subsubsection{Insights}
+\begin{itemize}
+    \item Three directions work best
+    \item For all other combinations, it seems to boil down to guessing whether the sound is coming from ahead or behind
+    \item white noise seems to be the easiest to recognize, but it's dull and the results are not that different
+    \item Synchronization in terms of wall clock is hard
+    \item Having different note types could be feasible and a way to adjust difficulty (e.g. cue-hit, cue-pause-hit, cue-cue-hit-hit)
+    \item The new movement pattern with the 4 direction test gives much better accuracy
+    \item Pure sine waves are still terrible
+    \item Creating a list view in has become unbelievably complicated
+\end{itemize}
+\subsubsection{TODO}
+\begin{itemize}
+    \item Implement the actual test component of the timing test
+    \item Implement the new movement pattern in the timing test
+    \item Select suitable background tracks
+\end{itemize}
+\subsection{Oct. 23 - Oct. 30}
+\subsubsection{Development}
+\begin{itemize}
+    \item Add an option for sounds to circle the user before approaching
+    \item Added directional buttons to the engine test
+    \item Implement two demo tracks for the engine test
+    \item First implementation of circling pattern in engine test
+\end{itemize}
+\subsubsection{Research}
+\begin{itemize}
+    \item Gather feedback on engine test
+\end{itemize}
+\subsubsection{Insights}
+\begin{itemize}
+    \item The circling pattern generally improves accuracy
+    \item But some people found the separate circling sound hard to hear or disturbing
+    \item The pingpong bounce sounds don't provide good feedback during approach
+\end{itemize}
+\subsubsection{TODO}
+\begin{itemize}
+    \item Make the music circle the user instead
+    \item Also try making the music approach part of the way before launching the sound
+    \item Try to create better approach sounds.
+    \item Test all that
+    \item Gather data on different gestures
+\end{itemize}
+\subsection{Oct. 31 - Nov. 14}
+\subsubsection{Development}
+\begin{itemize}
+    \item Develop (or rather hack together) a small sensor recording app for bulk sensor recording
+    \item Write a gnuplot script for data visualization
+\end{itemize}
+\subsubsection{Research}
+\begin{itemize}
+    \item Gather motion data and plot it
+\end{itemize}
+\subsubsection{TODO}
+\begin{itemize}
+    \item Gather data from more people
+    \item Look at the plots
+    \item Extend the data collection app to allow for faster batch data collection
+\end{itemize}
+\subsection{Nov. 14-Nov. 21}
+\subsubsection{Development}
+\begin{itemize}
+    \item Extended the data collection app to collect batches of motion data
+\end{itemize}
+\subsubsection{Research}
+\begin{itemize}
+    \item Research into commercially available rhythm games (started playing Project Diva f)
+\end{itemize}
+\subsubsection{Insights}
+\begin{itemize}
+    \item Remembered the "new player paralysis" most people have on their first round of Project Diva. I should try to prevent that in my game.
+\end{itemize}
+\subsubsection{TODO}
+\begin{itemize}
+    \item Collect motion data with the new app
+    \item Do something with that data
+\end{itemize}
+\subsection{Nov. 21 - Nov. 28}
+\subsubsection{Development}
+\begin{itemize}
+    \item Finish the multi-round test functionality
+    \item Fix reading of rotation sensors
+    \item Interpret rotation sensor data
+\end{itemize}
+\subsubsection{Research}
+\begin{itemize}
+    \item Refresh on Quaternions
+    \item Collect user data and discard it after discovering the rotation issue
+    \item Collect user data again
+\end{itemize}
+\subsubsection{Insights}
+\begin{itemize}
+    \item Android uses quaternions for rotations (as it really should in hindsight) (https://google-developer-training.gitbooks.io/android-developer-advanced-course-concepts/content/unit-1-expand-the-user-experience/lesson-3-sensors/3-2-c-motion-and-position-sensors/3-2-c-motion-and-position-sensors.html)
+    \item Don't implement linear algebra yourself
+\end{itemize}
+\subsection{Nov. 28 - Dec. 10}
+\subsubsection{Development}
+\begin{itemize}
+    \item Code up some data analysis with SciKit and in Kotlin
+\end{itemize}
+\subsubsection{Research}
+\begin{itemize}
+    \item Data collection
+    \item Look into clustering
+    \item Read other BSc thesis
+\end{itemize}
+\subsubsection{Insights}
+\begin{it}
+\item Three phases can generally be identified for the gestures
+\item Clustering maybe isn't quite the right tool
+\end{it}
+\subsection{Dec. 10 - ...}
+\subsubsection{Research}
+\begin{itemize}
+    \item Clean up collected data: remove invalid rounds, pick out subjects with enough rounds. Remove wrongly executed gestures and replace them with randomly chosen samples of the correct gesture from the same round. Remove some spurious motion data from the start of one round of one test person.
+\end{itemize}
+\subsubsection{Insights}
+\begin{itemize}
+    \item There seems to be a pretty good threshold to detect the start of a gesture for everyone except 1 person
+\end{itemize}
+\subsection{Sometime in December}
+\subsubsection{Notes}
+\begin{itemize}
+    \item Implement Forward-Back recognizer. ~98% accurate
+    \item left-right straight works the same way, just different thresholds
+    \item Implement a selector to choose between the two recognizers. also ~98% accurate
+    \item everything might be a bit more accurate with individual thresholds
+    \item Put in some more heuristics to detect peaks. Treat very low acceleration as end of peak to prevent irrevelant integrals spanning multiple peaks
+\end{itemize}
+\end{document}
